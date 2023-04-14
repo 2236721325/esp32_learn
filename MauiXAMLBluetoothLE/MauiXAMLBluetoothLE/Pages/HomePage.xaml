@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiXAMLBluetoothLE.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:model="clr-namespace:MauiXAMLBluetoothLE.Models"
+    xmlns:viewmodel="clr-namespace:MauiXAMLBluetoothLE.ViewModels"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="True"
+    x:DataType="viewmodel:HomePageViewModel">
+
+    <Grid
+        x:Name="HomePageGrid"
+        BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
+                                          Dark={StaticResource DarkBackground}}"
+        ColumnDefinitions="*,*"
+        ColumnSpacing="6"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <ScrollView x:Name="HomePageScrollView" Grid.ColumnSpan="2">
+            <CollectionView
+                x:Name="HomePageCollectionView"
+                BackgroundColor="Transparent"
+                ItemsSource="{Binding DeviceCandidates}"
+                SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="Transparent">
+                        <Grid
+                            HorizontalOptions="CenterAndExpand"
+                            RowDefinitions="*,*"
+                            RowSpacing="8"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                Grid.Row="0"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource LargeLabel}"
+                                Text="Scan for nearby Bluetooth LE devices." />
+
+                            <Label
+                                Grid.Row="1"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource LargeLabel}"
+                                Text="Check Bluetooth." />
+                        </Grid>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:DeviceCandidate">
+                        <Grid Padding="10">
+                            <Frame Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HomePageViewModel}}, Path=GoToHeartRatePageAsyncCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout Padding="8">
+                                    <Label Style="{StaticResource BaseLabel}" Text="{Binding Name}" />
+                                    <Label Style="{StaticResource MicroLabel}" Text="{Binding Id}" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <Button
+            x:Name="ScanDevicesButton"
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="8"
+            Command="{Binding ScanNearbyDevicesAsyncCommand}"
+            IsEnabled="{Binding IsNotScanning}"
+            IsVisible="{Binding IsNotScanning}"
+            Style="{StaticResource ButtonOutline}"
+            Text="Scan nearby devices" />
+
+        <Button
+            x:Name="CheckBluetoothButton"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8"
+            Command="{Binding CheckBluetoothAvailabilityAsyncCommand}"
+            IsEnabled="{Binding IsNotScanning}"
+            IsVisible="{Binding IsNotScanning}"
+            Style="{StaticResource ButtonOutline}"
+            Text="Check Bluetooth" />
+
+        <ActivityIndicator
+            x:Name="HomePageActivityIndicator"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding IsScanning}"
+            IsVisible="{Binding IsScanning}"
+            VerticalOptions="StartAndExpand" />
+    </Grid>
+</ContentPage>

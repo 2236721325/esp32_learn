@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiCar.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiCar"
+    xmlns:view="clr-namespace:MauiCar.Views">
+    <ShellContent
+        Title="Scan"
+        ContentTemplate="{DataTemplate view:ScanPage}"
+        Route="ScanPage" />
+
+    <ShellContent
+        Title="Control"
+        ContentTemplate="{DataTemplate view:ControlPage}"
+        Route="ControlPage" />
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>

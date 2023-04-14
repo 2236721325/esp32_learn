@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiCar.Views.ControlPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:MauiCar.ViewModels"
+    Title="ControlPage"
+    x:DataType="vm:ControlPageViewModel">
+    <toolkit:DockLayout>
+        <Button
+            toolkit:DockLayout.DockPosition="Top"
+            Command="{Binding ForwardCommand}"
+            HeightRequest="50"
+            Text="上" />
+        <Button
+            toolkit:DockLayout.DockPosition="Bottom"
+            Command="{Binding DownCommand}"
+            HeightRequest="70"
+            Text="下" />
+        <Button
+            toolkit:DockLayout.DockPosition="Left"
+            Command="{Binding LeftCommand}"
+            Text="左"
+            WidthRequest="80" />
+        <Button
+            toolkit:DockLayout.DockPosition="Right"
+            Command="{Binding RightCommand}"
+            Text="右"
+            WidthRequest="90" />
+        <Button Command="{Binding StopCommand}" Text="停止" />
+    </toolkit:DockLayout>
+</ContentPage>
