@@ -9,3 +9,6 @@ https://doc.itprojects.cn/0006.zhishi.esp32/02.doc/index.html#/00.diagram
 
 引脚参考 
 https://www.cnblogs.com/lnsane/p/13756430.html
+
+
+## car 文件蓝牙小车   与maui写的 app通信
