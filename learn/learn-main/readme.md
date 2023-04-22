@@ -6,6 +6,7 @@ https://blog.csdn.net/weixin_44741767/article/details/126874934
 
 https://doc.itprojects.cn/0006.zhishi.esp32/02.doc/index.html#/00.diagram
 
-
+# 串口通信
+https://blog.csdn.net/DDGGG1/article/details/122415153
 引脚参考 
 https://www.cnblogs.com/lnsane/p/13756430.html
